@@ -24,6 +24,9 @@ a {
 a:visited {
     color: white;
 }
+a:link{
+    color: white;
+}
 /* 头部样式 */
 
 /* 轮播样式 */
