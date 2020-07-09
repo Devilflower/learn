@@ -1,0 +1,49 @@
+span {
+    margin-right: 30px;
+}
+p {
+    display: inline;
+}
+
+#d1 {
+    width: 1860px;
+    padding: 10px 10px 10px 20px;
+    color: white;
+    background-color: saddlebrown;
+}
+#d2 {
+    margin-top: 0;
+}
+.d2:after {
+    content:"";
+    height:0;
+    display:block;
+    clear:both
+}
+.d2 {
+    *display:inline-block
+}
+.d2 {
+    *display:block;
+}
+.d3 {
+    float: left;
+    height: 200px;
+    width: 200px;
+    line-height:150px;
+    text-align: center;
+    background-color: gray;
+}
+.d4 {
+    padding: 10px;
+    text-indent: 10px;
+}
+.d5 {
+    width: 100%;
+    height: 2px;
+    margin: 2px;
+    background-color: black;
+}
+a:link {
+    color:blue;
+}
