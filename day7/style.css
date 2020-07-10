@@ -1,0 +1,103 @@
+/* 第一部分 */
+h1 {
+  margin-bottom: 100px;
+  font-size: 80px;
+  color: ivory;
+}
+.first {
+  display: flex;
+  background-image: url('1.jpg');
+  height: 1080px;
+  /* 实现垂直居中 */
+  align-items: center;
+  /* 实现水平居中 */
+  justify-content: center;
+}
+.weekday,.infotion{
+  color: white;
+}
+.weekday {
+  margin-bottom: 300px;
+}
+.login {
+  text-align: center;
+}
+/* 第一部分 */
+
+/* 第二部分 */
+.second {
+  text-align: center;   
+}
+.one {
+  float: left;
+  margin-left: 250px;
+}
+.commend {
+  float: left;
+  margin-left: 20px;
+}
+.d2 {
+  clear: both;
+  padding-top: 30px;
+}
+.photo {
+  float: left;
+  margin-left: 200px;
+}
+/* 第二部分 */
+
+/* 第三部分 */
+.three {
+  clear: both;
+  background-image: url('1.jpg');
+  height: 300px;
+}
+.d3 {
+  padding-top: 50px;
+  padding-left: 400px;
+}
+.p3 {
+  font-size: 40px;
+  color: white;
+}
+button {
+  margin-top: 20px;
+}
+/* 第三部分 */
+
+/* 第四部分 */
+.four {
+  text-align: center;
+}
+.d4 {
+  display: flex;
+}
+.dd4 {
+  flex: 1;
+}
+/* 第四部分 */
+
+/* 第五部分 */
+.five {
+  position: relative;
+  text-align: center;
+}
+.d5 {
+  padding-left: 560px;
+  width: 600px;
+  height: 600px;
+}
+.dd5 {
+  float: left;
+  margin: 30px;
+}
+.dd5:hover {
+  opacity: 0.3;
+}
+.d51 {
+  position: absolute;
+  top: 120px;
+  left: 645px;
+  z-index: -1;
+}
+/* 第五部分 */
