@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+  <input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+  <button id="trans-btn">转化为二进制</button>
+  <p id="result">运算结果</p>
+  <script>
+    // 数字的转换
+    function dec2bin(decNumber) {
+      let result = ''
+      let empty
+      while(decNumber / 2 >= 1) {
+        result += decNumber % 2 + ','
+        decNumber = parseInt(decNumber / 2)
+      }
+      result += decNumber
+      empty = result.split(',').reverse()
+      return empty
+    }
+    document.getElementById('trans-btn').onclick = () => {
+      let val = document.getElementById('dec-number').value
+      let bit = document.getElementById('bin-bit').value
+      let array = dec2bin(val)
+      let result = ''
+      for (i = 0;i < array.length;i++) {
+        result += array[i]
+      }
+      if (result.length > bit) {
+        console.log('出现了异常')
+      } else {
+        while (result.length < bit) {
+          result = 0 + result
+        }
+      }
+      document.getElementById('result').innerHTML = result
+    }
+    
+    (() => {
+      // 3的小游戏
+      for (i = 1;i <= 100; i++) {
+        if (i % 3 === 0) {
+          console.log('PA')
+        } else{
+          console.log(i)
+        }
+      }
+      // 99乘法表
+      for (i = 1; i <= 9; i++) {
+        for (j = 1; j <= 9; j++) {
+          if (i <= j) {
+            sum = j*i
+            console.log(i + '*' +  j + '=' + sum)
+          }
+        }
+      }
+    })()
+  </script>
+</body>
+</html>
