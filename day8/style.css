@@ -1,0 +1,218 @@
+body,html {
+  height: 100%;
+  margin:0;
+}
+.main {
+  height: auto;
+  display: flex;
+}
+/* 最左侧 */
+.blo {
+  display: block;
+}
+.left {
+  flex: none;
+  width: 80px;
+  height: auto;
+  min-height: 960px;
+  background-color: rgb(29, 37,49);
+}
+.lefth {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+}
+.leftb {
+  position: fixed;
+  left: 20px;
+  bottom: 10px;
+}
+/* 最左侧 */
+
+/* 中间层 */
+.middle {
+  flex: none;
+  width: 300px;
+  height: auto;
+  background-color: rgb(34, 44, 60);
+}
+.middleb {
+  position: fixed;
+  left: 130px;
+  bottom: 10px;
+  color: aliceblue;
+}
+.smb {
+  margin-left: 20px;
+}
+.progress {
+  border: none;
+  background-color: rgb(148, 127, 228);
+  height: 5px;
+}
+.ht {
+  border: none;
+  height: 1px;
+  background-color: rgb(136, 145, 151);
+}
+table {
+  margin-left: 35px;
+  color: #99a2b0;
+}
+.td1 {
+  color: rgb(61, 72, 88);
+}
+.td2 {
+  color: white;
+}
+/* 中间层 */
+
+/* 最右侧 */
+/* 最右侧头部 */
+img {
+  width: 50px;
+  height: 50px;
+}
+h1 {
+  margin-left: 25px;
+}
+.right {
+  flex: 1;
+  height: 100%;
+}
+.righth {
+  position: fixed;
+  top: 10px;
+  right: 30px;
+  width: 200px;
+}
+.rightd {
+  float: left;
+  margin-top: -3px;
+}
+.rightdd {
+  float: right;
+  padding-top: 10px;
+}
+.rightddd {
+  width: 150px;
+  padding-left: 70px;
+  margin-top: -15px;
+}
+.pr {
+  color: #2399f1;
+  margin-bottom: -13px;
+}
+.prr {
+  color: #b5b5b5;
+}
+/* 最右侧头部 */
+
+/* 最右侧的左边 */
+.rightmain {
+  display: flex;
+  height: auto;
+}
+.rightl {
+  flex: none;
+  width: 450px;
+}
+.info,.info1,.info2 {
+  text-align: center;
+  border: 1px solid gray;
+}
+.info {
+  line-height: 80px;
+  height: 80px;
+}
+.info1 {
+  border-width: 1px 1px 1px 3px;
+  border-color: gray gray gray rgb(66, 126, 238);
+  height: 150px;
+}
+.info2 {
+  height: 150px;
+}
+.infomain {
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-bottom: 40px;
+  width: 380px;
+}
+.infomation {
+  height: 20px;
+  width: 200px;
+  margin-left: 15px;
+  margin-right: 60px;
+}
+.rightr {
+  flex: 1;
+}
+.dddd {
+  height: 80px;
+  border-width: 1px 0 1px 0;
+  border-color: gray;
+  border-style: solid;
+}
+.bessie {
+  float: left;
+  line-height: 80px;
+  margin-left: 25px;
+}
+.tubiao {
+  float: right;
+  line-height: 80px;
+  margin-right: 10px;
+}
+.cc {
+  margin: 10px;
+}
+.ccc {
+  margin-right: 10px;
+}
+.ddddd {
+  height:350px;
+  border-width: 1px 0 1px 0;
+  border-color: gray;
+  border-style: solid; 
+}
+.tupian {
+  float: left;
+  margin-left: 100px;
+  margin-top: 30px;
+}
+.speak {
+  float: left;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.tupian1 {
+  float: left;
+  margin-left: 100px;
+  margin-top: 30px;
+}
+.speak1 {
+  float: left;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.ni {
+  clear: both;
+}
+.img1 {
+  margin: 30px;
+}
+.add {
+  position: absolute;
+  top: 740px;
+  left: 1170px;
+  z-index: -1;
+}
+.img1:hover {
+  opacity: 0.2;
+}
+.aa {
+  clear: both;
+  margin-left: 100px;
+  padding-top: 30px;
+}
