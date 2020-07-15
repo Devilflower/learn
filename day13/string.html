@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <label>String A:
+        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+    </label>
+    <textarea id="str-a"></textarea>
+    <label>String B:
+        <input id="radio-b" type="radio" name="str-obj" value="b">
+    </label>
+    <textarea id="str-b"></textarea>        
+    <label>Num A：<input id="num-a" type="number" value="0"></label>
+    <label>Num B：<input id="num-b" type="number" value="1"></label>
+  </div>
+  <div>
+      <button onclick="leng()">获取当前选中输入的内容长度</button>
+      <button onclick="three()">当前选中输入中的第3个字符</button>
+      <button onclick="con()">把两个输入框的文字连接在一起输出（concat）</button>
+      <button onclick="positionA()">输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+      <button onclick="positionB()">输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+      <button onclick="part1()">使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+      <button onclick="coll()">当前选中输入框的行数</button>
+      <button onclick="childString()">使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+      <button onclick="up()">把所选输入框中的内容全部转为大写</button>
+      <button onclick="down()">把所选输入框中的内容全部转为小写</button>
+      <button onclick="backspace()">把所选输入框中内容的半角空格全部去除</button>
+      <button onclick="rep()">把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+  </div>
+  <p id="result"></p>
+  <script>
+    var result = document.getElementById('result')
+    var numa = document.getElementById('num-a').value
+    var numb = document.getElementById('num-b').value
+    // 获取当前选中输入的内容长度
+    function leng() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.length
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.length
+      }
+    }
+    // 获取当前选中框中的第三个字符
+    function three() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a[2]
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b[2]
+      }
+    }
+    // 把两个输入框的文字连接在一起输出
+    function con() {
+      let a = document.getElementById('str-a').value
+      let b = document.getElementById('str-b').value
+      result.innerHTML = a.concat(b)
+    }
+    // 输入B中的内容，再输入A的内容中第一次出现的位置
+    function positionA() {
+      let a = document.getElementById('str-a').value
+      let b = document.getElementById('str-b').value
+      result.innerHTML = a.indexOf(b)
+    }
+    // 输入在A中的内容，在输入B的内容中最后一次出现的位置
+    function positionB() {
+      let a = document.getElementById('str-a').value
+      let b = document.getElementById('str-b').value
+      result.innerHTML = b.lastIndexOf(a)
+    }
+    // 获取选中框中的部分内容
+    function part1() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.slice(numa,numb)
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.slice(numa,numb)
+      }
+    }
+    // 获取当前选中框的行数
+    function coll() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        console.log(a)
+        result.innerHTML = a.split('\n').length
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.split('\n').length
+      }
+    }
+    // 获取选中框的子字符串
+    function childString() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.substr(numa,numb)
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.substr(numa,numb)
+      }
+    }
+    // 把所选框的内容转为大写
+    function up() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.toUpperCase()
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.toUpperCase()
+      }
+    }
+    // 把所选框的内容转为小写
+    function down() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.toLowerCase()
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.toLowerCase()
+      }
+    }
+    // 去掉半角空格
+    function backspace() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        result.innerHTML = a.replace(/ /g,'')
+      } else if (IsSelectB) {
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.replace(/ /g,'')
+      }
+    }
+    // 把所选输入框中内容的a全部替换成另外一个输入框中的内容
+    function rep() {
+      let IsSelectA = document.getElementById('radio-a').checked
+      let IsSelectB = document.getElementById('radio-b').checked
+      if (IsSelectA) {
+        let a = document.getElementById('str-a').value
+        let b = document.getElementById('str-b').value
+        result.innerHTML = a.replace(/a/g,b)
+      } else if (IsSelectB) {
+        let a = document.getElementById('str-a').value
+        let b = document.getElementById('str-b').value
+        result.innerHTML = b.replace(/a/g,a)
+      }
+    }
+  </script>
+</body>
+</html>

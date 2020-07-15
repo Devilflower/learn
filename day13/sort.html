@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+    var type
+    // 从大到小
+    for(let i = 0;i < arr.length;i++) {
+      for (let j = i + 1;j < arr.length;j++) {
+        if (arr[i] < arr[j]) {
+          type = arr[i]
+          arr[i] = arr[j] 
+          arr[j] = type
+        }
+      }
+    }
+    console.log(arr)
+    // 从小到大
+    for(let i = 0;i < arr.length;i++) {
+      for (let j = i + 1;j < arr.length;j++) {
+        if (arr[i] > arr[j]) {
+          type = arr[i]
+          arr[i] = arr[j] 
+          arr[j] = type
+        }
+      }
+    }
+    console.log(arr)
+
+    var arr1 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+    for(let i = 0;i < arr1.length;i++) {
+      for (let j = i + 1;j < arr1.length;j++) {
+        if (arr1[i] < arr1[j]) {
+          type = arr1[i]
+          arr1[i] = arr1[j] 
+          arr1[j] = type
+        }
+      }
+    }
+    console.log(arr1)
+
+    for(let i = 0;i < arr1.length;i++) {
+      for (let j = i + 1;j < arr1.length;j++) {
+        if (arr1[i] > arr1[j]) {
+          type = arr1[i]
+          arr1[i] = arr1[j] 
+          arr1[j] = type
+        }
+      }
+    }
+    console.log(arr1)
+
+    var arr2 = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+    
+    for(let i = 0;i < arr2.length;i++) {
+      for (let j = i + 1;j < arr2.length;j++) {
+        if (arr2[i][1] < arr2[j][1]) {
+          type = arr2[i]
+          arr2[i] = arr2[j] 
+          arr2[j] = type
+        }
+      }
+    }
+    console.log(arr2)
+
+    var arr3 = [
+      {
+          id: 1,
+          name: 'candy',
+          value: 40
+      }, {
+          id: 2,
+          name: 'Simon',
+          value: 50
+      }, {
+          id: 3,
+          name: 'Tony',
+          value: 45
+      }, {
+          id: 4,
+          name: 'Annie',
+          value: 60
+      }
+    ];
+
+    for(let i = 0;i < arr3.length;i++) {
+      for (let j = i + 1;j < arr3.length;j++) {
+        if (arr3[i].value > arr3[j].value ){
+          type = arr3[i]
+          arr3[i] = arr3[j] 
+          arr3[j] = type
+        }
+      }
+    }
+    console.log(arr3)
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var scoreObject = {
+      "Tony": {
+          "Math": 95,
+          "English": 79,
+          "Music": 68
+      }, 
+      "Simon": {
+          "Math": 100,
+          "English": 95,
+          "Music": 98
+      }, 
+      "Annie": {
+          "Math": 54,
+          "English": 65,
+          "Music": 88
+      }
+    }
+    var array = []
+    for (let obj in scoreObject) {
+      let o = {}
+      o[obj] = scoreObject[obj]
+      array.push(o)
+    }
+    console.log(array)
+    
+    for (let obj in scoreObject) {
+      let o = []
+      o[0] = obj
+      o[1] = scoreObject[obj].Math
+      o[2] = scoreObject[obj].English
+      o[3] = scoreObject[obj].Music
+      array.push(o)
+    }
+    console.log(array)
+
+    var menuArr = [
+      [1, "Area1", -1],
+      [2, "Area2", -1],
+      [3, "Area1-1", 1],
+      [4, "Area1-2", 1],
+      [5, "Area2-1", 2],
+      [6, "Area2-2", 2],
+      [7, "Area1-2-3", 4],
+      [8, "Area2-2-1", 6],
+    ];
+    var menuObject = {}
+    for (let menu of menuArr) {
+      if (menu[2] === -1) {
+        menuObject[menu[0]] = {}
+        menuObject[menu[0]].name = menu[1]
+        menuObject[menu[0]].subMenu = {}
+      } else {
+        if (menuObject[menu[2]]) {
+          menuObject[menu[2]].subMenu[menu[0]] = {}
+          menuObject[menu[2]].subMenu[menu[0]].name = menu[1]
+          menuObject[menu[2]].subMenu[menu[0]].subMenu = {}
+        } else {
+          if (menuObject['1'].subMenu[menu[2]]) {
+            menuObject['1'].subMenu[menu[2]].subMenu[menu[0]] = {}
+            menuObject['1'].subMenu[menu[2]].subMenu[menu[0]].name = menu[1]
+            menuObject['1'].subMenu[menu[2]].subMenu[menu[0]].subMenu = {}
+          } else {
+            menuObject['2'].subMenu[menu[2]].subMenu[menu[0]] = {}
+            menuObject['2'].subMenu[menu[2]].subMenu[menu[0]].name = menu[1]
+            menuObject['2'].subMenu[menu[2]].subMenu[menu[0]].subMenu = {}
+          }
+        }
+      }
+    }
+    console.log(menuObject)
+  </script>
+</body>
+</html>
