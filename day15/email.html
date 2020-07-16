@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li:hover {
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+<body>  
+  <input id="email-input" type="text">
+  <ul id="email-sug-wrapper"></ul>
+  <script>
+    (
+      () => {
+        let input = document.getElementById('email-input')
+        input.focus()
+      }
+    )()
+
+    var ul = document.getElementById('email-sug-wrapper')
+    var nowSelectTipIndex = 0 // 用来设置当前选中的序号
+    var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net']
+    document.getElementById('email-input').oninput = (e) => {
+      document.onkeydown = (e) => {
+        let array = ul.getElementsByTagName('li')
+        if (e && e.keyCode === 38) {
+          if (array[0].style.backgroundColor === 'aquamarine') {
+            array[0].style.backgroundColor = 'white'
+            nowSelectTipIndex = postfixList.length - 1
+            array[nowSelectTipIndex].style.backgroundColor = 'aquamarine'
+          } else {
+            array[nowSelectTipIndex].style.backgroundColor = 'white'
+            nowSelectTipIndex--
+            array[nowSelectTipIndex].style.backgroundColor = 'aquamarine'
+          }
+        } else if (e && e.keyCode === 40) {
+          if (array[array.length - 1].style.backgroundColor === 'aquamarine') {
+            array[array.length - 1].style.backgroundColor = 'white'
+            nowSelectTipIndex = 0
+            array[nowSelectTipIndex].style.backgroundColor = 'aquamarine'
+          } else {
+            array[nowSelectTipIndex].style.backgroundColor = 'white'
+            nowSelectTipIndex++
+            array[nowSelectTipIndex].style.backgroundColor = 'aquamarine'
+          }
+          console.log(nowSelectTipIndex)
+        } else if (e && e.keyCode === 13) {
+          e.target.value =  array[nowSelectTipIndex].innerHTML
+          for (let i = array.length - 1;i >= 0;i--)
+          {
+            ul.removeChild(array[i])
+          }
+          ul.style.display = 'none'
+        } else {
+          nowSelectTipIndex = 0
+        }
+      }
+      show()
+      addUl()
+    }
+    // 获取用户输入框中的内容
+    function getInfomation() {
+      let ini = document.getElementById('email-input').value
+      return ini.trim()
+    }
+
+    // 生成提示框中的内容
+    function autoInfo() {
+      let info = getInfomation()
+      let back = ''
+      let j = 0
+      if (info.indexOf('@') !== -1) {
+        back = info.slice(info.indexOf('@') + 1)
+        info = info.slice(0,info.indexOf('@'))
+      }
+      let lis = []
+      for (let i = 0;i < postfixList.length;i++) {
+        let li = document.createElement('li')
+        if (postfixList[i].indexOf(back) !== -1 && back !== '') {
+          li.innerHTML = info + postfixList[i]
+          lis[j] = li
+          j++
+        }
+      }
+      if (lis.length === 0) {
+        for (let i = 0;i < postfixList.length;i++) {
+          let li = document.createElement('li')
+          li.innerHTML = info + postfixList[i]
+          lis[i] = li
+        }
+      }
+      lis[nowSelectTipIndex].style.backgroundColor = 'aquamarine'
+      return lis 
+    }
+
+    // 把li中的内容放到ui中
+    function addUl() {
+      let array = autoInfo()
+      for (let a of array) {
+        ul.appendChild(a)
+      }
+    }
+
+    // 控制ui的显示
+    function show() {
+      let arr = ul.getElementsByTagName('li')
+      for (let i = arr.length - 1;i >= 0;i--)
+      {
+        ul.removeChild(arr[i])
+      }
+      if (getInfomation() === '') {
+        ul.style.display = 'none'
+      } else {
+        ul.style.display = 'block'
+      }
+    }
+
+    // 鼠标点击之后
+    document.getElementById('email-sug-wrapper').onclick = (e) => {
+      ul.style.display = 'none'
+      let li = e.target
+      let input = document.getElementById('email-input')
+      input.value = li.innerHTML
+      input.focus()
+    }
+  </script>
+</body>
+</html>
