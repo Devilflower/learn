@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <select id="year-select">
+  </select>
+
+  <select id="month-select">
+  </select>
+
+  <select id="day-select">
+  </select>
+
+  <select id="hour-select">
+  </select>
+
+  <select id="minite-select">
+  </select>
+
+  <select id="second-select">
+  </select>
+  <button onclick="show()">计算</button>
+  <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+  <script>
+    (
+      // 动态增加默认选择
+      () => {
+        let year = document.getElementById('year-select')
+        let month = document.getElementById('month-select')
+        let day = document.getElementById('day-select')
+        let hour = document.getElementById('hour-select')
+        let minite = document.getElementById('minite-select')
+        let second = document.getElementById('second-select')
+        for (let i = 2000;i <= 2032;i++) {
+          year.options.add(new Option(i,i))
+        }
+        for (i = 1;i <= 12;i++) {
+          month.options.add(new Option(i,i))
+        }
+        for (i = 1;i <= 31;i++) {
+          day.options.add(new Option(i,i))
+        }
+        for (i = 0;i <= 23;i++) {
+          hour.options.add(new Option(i,i))
+        }
+        for (let i = 0;i <= 59;i++) {
+          minite.options.add(new Option(i,i))
+          second.options.add(new Option(i,i))
+        }
+      }
+    )()
+    // 动态增加天数
+    function daySelect(year,month) {
+      let max
+      let day = document.getElementById('day-select')
+      if (month === '1' || month === '3' || month === '5' || month === '7' || month === '8' || month === '10' || month === '12') {
+        max = 31
+      } else if (month === '4' || month === '6' || month === '9' || month === '11') {
+        max = 30
+      } else {
+        if (year % 4 === 0 && year % 100 !== 0 && year % 400 === 0) {
+          max = 29
+        } else {
+          max = 28
+        }
+      }
+      for (let i = 1;i <= max;i++) {
+        day.options.add(new Option(i,i))
+      }
+    }
+    document.getElementById('month-select').onchange = (e) => {
+      let year =  document.getElementById('year-select').value
+      let month = e.target.value
+      daySelect(year,month)
+    }
+
+    // 计算天数
+    function reckon(year,month,day,hour,minite,second) {
+      let old = new Date
+      let now = new Date()
+      old.setFullYear(year)
+      old.setMonth(month)
+      old.setDate(day)
+      old.setHours(hour)
+      old.setMinutes(minite)
+      old.setSeconds(second)
+      let time = now.getTime() - old.getTime()
+      let rday = Math.floor(time / 86400000)
+      time = time % 86400000
+      let rhour = Math.floor(time / 3600000)
+      time = time % 3600000
+      let rminite = Math.floor(time / 60000)
+      time = time % 60000
+      let rsecond = Math.floor(time / 1000)
+      return rday + ' 天 ' + rhour + ' 小时 ' + rminite + ' 分 ' + rsecond + ' 秒'
+    }
+    // 封装结果 进行展示
+    function show() {
+      let year = document.getElementById('year-select').value
+      let month = document.getElementById('month-select').value
+      let day = document.getElementById('day-select').value
+      let hour = document.getElementById('hour-select').value
+      let minite = document.getElementById('minite-select').value
+      let second = document.getElementById('second-select').value
+      let result = document.getElementById('result-wrapper')
+      result.innerHTML = '现在距离 ' + year +'年' + month + '月' + day + '日 ' + hour + ':' + minite + ':' + second + ' 还有' +  reckon(year,month,day,hour,minite,second)
+    }
+  </script>
+</body>
+</html>
