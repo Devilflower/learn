@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="region-radio-wrapper">
+    <input type="checkbox" value="华东" checked>华东
+    <input type="checkbox" value="华北">华北
+    <input type="checkbox" value="华南">华南
+    <input type="checkbox" value="全选">全选
+  </div>
+  
+  <div id="product-radio-wrapper">
+    <input type="checkbox" value="手机" checked>手机
+    <input type="checkbox" value="笔记本">笔记本
+    <input type="checkbox" value="智能音箱">智能音箱
+    <input type="checkbox" value="全选">全选
+  </div>
+
+  <div id="table-wraper">
+    <table id="data">
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>地区</th>
+          <th>1月</th>
+          <th>2月</th>
+          <th>3月</th>
+          <th>4月</th>
+          <th>5月</th>
+          <th>6月</th>
+          <th>7月</th>
+          <th>8月</th>
+          <th>9月</th>
+          <th>10月</th>
+          <th>11月</th>
+          <th>12月</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>手机</td>
+          <td>华东</td>
+          <td>120</td>
+          <td>100</td>
+          <td>140</td>
+          <td>160</td>
+          <td>180</td>
+          <td>185</td>
+          <td>190</td>
+          <td>210</td>
+          <td>230</td>
+          <td>245</td>
+          <td>255</td>
+          <td>270</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    var regionWrapper = document.getElementById('region-radio-wrapper')
+    var productWrapper = document.getElementById('product-radio-wrapper')
+    var sourceData = [{
+      product: "手机",
+      region: "华东",
+      sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+    }, {
+      product: "手机",
+      region: "华北",
+      sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+    }, {
+      product: "手机",
+      region: "华南",
+      sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+    }, {
+      product: "笔记本",
+      region: "华东",
+      sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+    }, {
+      product: "笔记本",
+      region: "华北",
+      sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+    }, {
+      product: "笔记本",
+      region: "华南",
+      sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+    }, {
+      product: "智能音箱",
+      region: "华东",
+      sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+    }, {
+      product: "智能音箱",
+      region: "华北",
+      sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+    }, {
+      product: "智能音箱",
+      region: "华南",
+      sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+    }]
+    // 根据用户选择地区的不同更换数据
+    regionWrapper.onclick = (e) => {
+      if (e.target.type) {
+        check(regionWrapper,e.target)
+      }
+      let checkButton = getChecked()
+      let tbody = package(checkButton)
+      show(tbody)
+    }
+
+    // 根据用户选择商品种类的不同更换数据
+    productWrapper.onclick = (e) => {
+      if (e.target.type) {
+        check(productWrapper,e.target)
+      }
+      let checkButton = getChecked()
+      let tbody = package(checkButton)
+      show(tbody)
+    }
+
+    // 选择按钮的逻辑
+    function check (id,button) {
+      let array = id.getElementsByTagName('input')
+      if (button.value !== '全选') {
+        let result = []
+        // 判断几个按钮被选中
+        let num = 0
+        for(let i = 0;i < array.length;i++) {
+          if (array[i].checked) {
+            num++
+          }
+        }
+        if (!button.checked) {
+          // 如果是唯一选中，则不能取消
+          if (num === 0) {
+            button.checked = true
+          } else if (num === 3) { // 如果为全选状态，则取消全选
+            for(let i = 0;i < array.length;i++) {
+              if (array[i].value === '全选') {
+                array[i].checked = false
+              }
+            }
+          }
+        } else {
+          // 如果当前为最后一个按钮，则全选默认被选上
+          if (num === 3) {
+            for(let i = 0;i < array.length;i++) {
+              if (array[i].value === '全选') {
+                array[i].checked = true
+              }
+            }
+          }
+        }
+      } else {
+        if (button.checked) {
+          for(let i = 0;i < array.length;i++) {
+                array[i].checked = true
+            }
+        }
+      }
+    }
+
+    // 封装tr
+    function packTr(tr,value) {
+      for (let j = -2;j < sourceData[value].sale.length;j++) {
+        let td = document.createElement('td')
+        if (j === -2) {
+          td.innerHTML = sourceData[value].product
+        } else if (j === -1) {
+          td.innerHTML = sourceData[value].region
+        } else {
+          td.innerHTML = sourceData[value].sale[j]
+        }
+        tr.appendChild(td)
+      }
+      return tr
+    }
+    // 封装tbody
+    function package (object) {
+      let tbody = document.createElement('tbody')
+      for (let i = 0;i < sourceData.length;i++) {
+        let tr = document.createElement('tr')
+        if (object.proArray.includes('全选') && object.regArray.includes('全选')) {
+          tr = packTr(tr,i)
+        } else if (object.proArray.includes('全选')) {
+          for (let j = 0;j < object.regArray.length;j++) {
+            if (object.regArray[j] === sourceData[i].region) {
+              tr = packTr(tr,i)
+            }
+          }
+        } else if (object.regArray.includes('全选')) {
+          for (let j = 0;j < object.proArray.length;j++) {
+            if (object.proArray[j] === sourceData[i].product) {
+              tr = packTr(tr,i)
+            }
+          }
+        } else {
+          for (let j = 0;j < object.regArray.length;j++) {
+            if (object.regArray[j] === sourceData[i].region) {
+              for (let k = 0;k < object.proArray.length;k++) {
+                if (object.regArray[j] === sourceData[i].region && object.proArray[k] === sourceData[i].product) {
+                  tr = packTr(tr,i)
+                }
+              }
+            }
+          }
+        }
+        if (tr.getElementsByTagName('td')[0]) {
+          tbody.appendChild(tr)
+        }
+      }
+      return tbody
+    }
+
+    // 呈现数据
+    function show(value) {
+      let table = document.getElementById('data')
+      // 如果当table存在tbody 则删除tbody
+      if (table.getElementsByTagName('tbody')[0]) {
+        table.removeChild(table.getElementsByTagName('tbody')[0])
+      }
+      table.appendChild(value)
+    }
+
+    // 获取选中的按钮
+    function getChecked() {
+      let pro = productWrapper.getElementsByTagName('input')
+      let reg = regionWrapper.getElementsByTagName('input')
+      let checkButton = {
+        proArray: [],
+        regArray: []
+      }
+      let j = 0
+      let k = 0
+      for (let i = 0;i < pro.length;i++) {
+        if (pro[i].checked) {
+          checkButton.proArray[j] = pro[i].value
+          j++ 
+        }
+        if (reg[i].checked) {
+          checkButton.regArray[k] = reg[i].value
+          k++
+        }
+      }
+      return checkButton
+    }
+  </script>
+</body>
+</html>
